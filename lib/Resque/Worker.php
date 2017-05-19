@@ -257,6 +257,7 @@ class Resque_Worker
 		catch(Exception $e) {
 			$this->logger->log(Psr\Log\LogLevel::CRITICAL, '{job} has failed {stack}', array('job' => $job, 'stack' => $e));
 			$job->fail($e);
+			throw new Exception($e);
 			return;
 		}
 
